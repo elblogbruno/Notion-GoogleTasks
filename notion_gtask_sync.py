@@ -83,16 +83,16 @@ def sync_notion_to_tasks(client, calendar_url, title_format,list_id):
                 clean_props[name] = v
         title = title_format.format_map(clean_props)
 
-        start_format = date._format_datetime(date.start)
-        if start_format[1] == None: #no time specified on the date.
-            date.start =  date._parse_datetime(str(date.start),"00:00")
+        # start_format = date._format_datetime(date.start)
+        # if start_format[1] == None: #no time specified on the date.
+        #     date.start =  date._parse_datetime(str(date.start),"00:00")
         print(e.status)
         if(e.status == "Done"):
             print("Status is  done, so it has finished!")
-            remove_task_from_list(gt,list_id,title,date.start,date.end)
+            remove_task_from_list(gt,list_id,title,date.start)
         else:
-            print("Status is not done, so it has not been finished! A")
-            add_task_to_list(gt,list_id,title,date.start,date.end,desc)
+            print("Status is not done, so it has not been finished! Adding it...")
+            add_task_to_list(gt,list_id,title,date.start,desc)
         # Print
         # print("{}: {} -> {}".format(title, date.start,date.end))
         # print(desc)
