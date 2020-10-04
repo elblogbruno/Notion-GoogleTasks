@@ -2,7 +2,8 @@ from datetime import date
 from gtasks import Gtasks
 
 def search_task(gt,task_list_id,task_title,due_date):
-    tasks = gt.get_tasks(task_list=task_list_id, due_min=due_date, due_max=due_date)
+    tasks = gt.get_tasks(task_list=task_list_id)
+    print("Searching for {0} task on this list {1}".format(task_title,task_list_id))
     for task in tasks:
         if task_title in task.title:
             return task
@@ -10,6 +11,7 @@ def search_task(gt,task_list_id,task_title,due_date):
 
 def add_task_to_list(gt,task_list_id,task_title,due_date,description):
     task = search_task(gt,task_list_id,task_title,due_date)
+    print(task)
     if task == None:
         print("Adding task to list")
         current_list = gt.get_list(task_list_id)

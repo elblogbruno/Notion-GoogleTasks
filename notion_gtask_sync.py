@@ -23,6 +23,7 @@ gt = Gtasks()
 ### Sync notion tasks with google tasks 
 ###
 def sync_notion_to_tasks(client, calendar_url, title_format,list_id):
+    print("### Syncing notion tasks with google tasks ###""")
     calendar = client.get_block(calendar_url)
     for view in calendar.views:
         if isinstance(view, CalendarView):
@@ -116,8 +117,8 @@ def sync_gtasks_to_notion(client, calendar_url, title_format,list_id):
 
     tasks = gt.get_tasks(task_list=list_id,updated_min=ten_mins_ago)  
     
-    print("Entries on notion calendar: " + str(len(calendar_entries)))
-    print("Entries on google tasks: " + str(len(tasks)))
+    # print("Entries on notion calendar: " + str(len(calendar_entries)))
+    # print("Entries on google tasks: " + str(len(tasks)))
 
     if len(tasks) > 0:
         for task in tasks:
