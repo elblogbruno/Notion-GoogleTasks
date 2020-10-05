@@ -20,7 +20,7 @@ To get the tokenV2 I do explain it on my other notion repo here https://github.c
 This project was inspired why https://github.com/evertheylen/notion-export-ics and https://github.com/elblogbruno/Notion-GoogleCalendar-Sync that the idea to get it done is simpler, but this one I find it nicer and faster. 
 
 ## TODO
-Google Calendar to notion sync.
+Google Task to notion sync. by the moment there is only notion to google task, not viceversa.
 
 
 ## FAQS
