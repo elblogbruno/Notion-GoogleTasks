@@ -16,14 +16,18 @@ from utils.notion_utils import *
 from datetime import timedelta
 from datetime import datetime as dt
 from tzlocal import get_localzone
+import logging
 
 gt = Gtasks()
+
+logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s',level=logging.INFO)
 
 ###
 ### Sync notion tasks with google tasks 
 ###
 def sync_notion_to_tasks(client, calendar_url, title_format,list_id):
-    print("### Syncing notion tasks with google tasks ###""")
+    print("# Syncing notion tasks with google tasks {0}".format(dt.today()))
+    logging.info("# Syncing notion tasks with google tasks {0}".format(dt.today()))
     calendar = client.get_block(calendar_url)
     for view in calendar.views:
         if isinstance(view, CalendarView):
@@ -90,12 +94,15 @@ def sync_notion_to_tasks(client, calendar_url, title_format,list_id):
         print(e.status)
         if(e.status == "Done"):
             print("Status is  done, so it has finished!")
+            logging.info("{0} task status is {1}, so it has finished!".format(title,e.status))
             remove_task_from_list(gt,list_id,title,date.start)
         else:
             print("Status is not done, so it has not been finished! Adding it...")
+            logging.info("{0} task status is {1}, so it has not been finished! Adding it to google tasks...".format(title,e.status))
             add_task_to_list(gt,list_id,title,date.start,desc)
         # Print
-        # print("{}: {} -> {}".format(title, date.start,date.end))
+        print("{}: {} -> {}".format(title, date.start,date.end))
+        logging.info("{}: {} -> {}".format(title, date.start,date.end))
         # print(desc)
         # print('--------------')
 
@@ -103,6 +110,7 @@ def sync_notion_to_tasks(client, calendar_url, title_format,list_id):
 ### Sync new google tasks with notion 
 ###
 def sync_gtasks_to_notion(client, calendar_url, title_format,list_id):
+    logging.info("# Syncing google tasks with notion tasks {0}".format(dt.today()))
     calendar = client.get_block(calendar_url)
     for view in calendar.views:
         if isinstance(view, CalendarView):
@@ -125,8 +133,10 @@ def sync_gtasks_to_notion(client, calendar_url, title_format,list_id):
             entry = search_task_on_notion(calendar_entries,task.title)
             if entry:
                 print("Task exists on notion")
+                logging.info("# Task exists on notion")
             else:
                 print("New task is not on notion")
+                logging.info("#New Task is not on notion")
                 # notion_event = calendar.collection.add_row() 
                 # notion_event.name = task.title
                 # new_date = NotionDate(str(task.due_date))
