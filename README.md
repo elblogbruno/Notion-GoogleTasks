@@ -6,6 +6,7 @@ You can change the code to change the property name of course. It searches them 
 
 Need to have a ```client_id.json``` get from the Google Calendar API, more info here: 
 https://developers.google.com/calendar/quickstart/python
+If you already have it because you have setup my other repo https://github.com/elblogbruno/Notion-GoogleCalendar-Sync, you can reuse it!
 
 Also a ```settings.json``` file with this structure:
 ```
@@ -15,9 +16,10 @@ Also a ```settings.json``` file with this structure:
 	"property":"deadline" #name of the property that holds a Date. In my case deadline, pretty straightforward
 }
 ```
+
 To get the tokenV2 I do explain it on my other notion repo here https://github.com/elblogbruno/NotionAI-MyMind.
 
-This project was inspired why https://github.com/evertheylen/notion-export-ics and https://github.com/elblogbruno/Notion-GoogleCalendar-Sync that the idea to get it done is simpler, but this one I find it nicer and faster. 
+This project was inspired why https://github.com/evertheylen/notion-export-ics and https://github.com/elblogbruno/Notion-GoogleCalendar-Sync that the idea to get it done is simpler, but this one I find it nicer. 
 
 ## TODO
 Google Task to notion sync. by the moment there is only notion to google task, not viceversa.
